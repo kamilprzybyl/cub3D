@@ -1,8 +1,8 @@
-FLAGS	=	-Wall -Wextra -Werror ./Libft/libft.a -L ./mlx -lmlx -framework OpenGL -framework AppKit
+FLAGS	=	-Wall -Wextra -Werror -I ./inc/ ./Libft/libft.a -L ./mlx -lmlx -framework OpenGL -framework AppKit
 NAME	=	cub3D
 MLX		=	mlx/libmlx.a
 LIBFT	=	Libft/libft.a
-SRC		=	main.c
+SRC		=	src/main.c
 
 OBJ = 	$(SRC:.c=.o)
 
