@@ -1,15 +1,19 @@
-FLAGS	=	-Wall -Wextra -Werror -I ./inc/ ./Libft/libft.a -L ./mlx -lmlx -framework OpenGL -framework AppKit
+FLAGS	=	-Wall -Wextra -Werror ./Libft/libft.a -L ./mlx -lmlx -framework OpenGL -framework AppKit
 NAME	=	cub3D
 MLX		=	mlx/libmlx.a
 LIBFT	=	Libft/libft.a
-SRC		=	src/main.c
-
+SRC		=	src/main.c \
+			src/parse.c \
+			src/init.c \
+			src/utils/get_num_of_rows.c \
+			get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c
 OBJ = 	$(SRC:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c
-	gcc -c -Wall -Werror -Wextra -D BUFFER_SIZE=100 $^ -o $@
+	gcc -c -Wall -Werror -Wextra -I ./inc/ -D BUFFER_SIZE=100 $^ -o $@
 
 $(NAME): $(MLX) $(LIBFT) $(OBJ)
 	gcc $(FLAGS) $^ -o $@
