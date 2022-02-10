@@ -4,7 +4,7 @@ static int	textures(char **line)
 {
 	if (!data()->xpm)
 	{
-		data()->xpm = malloc(sizeof(char *) * (4 + 1));
+		data()->xpm = malloc(sizeof(char *) * (6 + 1));
 		if (!data()->xpm)
 			return (1);
 		data()->xpm[6] = NULL;
@@ -36,7 +36,6 @@ static int	textures(char **line)
 
 static int	map(char **line)
 {
-	// printf("[%s]\n", *line);
 	int		i;
 	char	**tmp;
 
@@ -61,6 +60,7 @@ static int	map(char **line)
 	}
 	tmp[i] = *line;
 	tmp[i + 1] = NULL;
+	free(data()->map);
 	data()->map = tmp;
 	return (0);
 }
@@ -76,8 +76,6 @@ int	parse(int fd)
 	while (1)
 	{
 		ret = get_next_line(fd, &line);
-		if (ret == 0 || ret == -1)
-			break ;
 		text = textures(&line);
 		if (text == 1)
 			return (1);
@@ -86,6 +84,10 @@ int	parse(int fd)
 			if (map(&line) == 1)
 				return (1);
 		}
+		if (ret == 0 || ret == -1)
+			break ;
+		if (ft_strlen(line) == 0)
+			free(line);
 	}
 	// for (int i = 0; i < 6; i++)
 	// 	printf("%s\n", data()->xpm[i]);

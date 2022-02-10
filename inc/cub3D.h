@@ -44,6 +44,4 @@ void	init();
 int		key_hook(int keycode, void *unused);
 int		mouse_events(int keycode);
 
-int		get_num_of_rows(char *file);
-
 #endif
