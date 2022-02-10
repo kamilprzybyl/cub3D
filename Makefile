@@ -5,6 +5,8 @@ LIBFT	=	Libft/libft.a
 SRC		=	src/main.c \
 			src/parse.c \
 			src/init.c \
+			src/mouse.c \
+			src/hooks.c \
 			src/utils/get_num_of_rows.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c

@@ -9,11 +9,6 @@
 # include "../Libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
 typedef struct s_img {
 	void	*ptr_img;
 	char	*addr;
@@ -26,19 +21,28 @@ typedef struct s_img {
 
 typedef struct s_cub
 {
+	void	*mlx;
+	void	*win;
 	t_img	img[4];
-	char	*xpm[4];
-	t_vars	vars;
+	char	**xpm;
 	char	**map;
 }				t_cub;
 
-# define NORTH "../textures/NO.xpm"
-# define SOUTH "../textures/SO.xpm"
-# define WEST "../textures/WE.xpm"
-# define EAST "../textures/EA.xpm"
+# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
-int		parse(char **argv);
-void	init(t_cub *cub, int fd, char **argv);
+t_cub	*data(void);
+int		parse(int fd);
+void	init();
+int		key_hook(int keycode, void *unused);
+int		mouse_events(int keycode);
 
 int		get_num_of_rows(char *file);
 

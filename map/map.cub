@@ -1,8 +1,7 @@
-R 800 400
-NO ./path/to/texture.xpm
-SO ./path/to/texture.xpm
-WE ./path/to/texture.xpm
-EA ./path/to/texture.xpm
+NO /Users/kprzybyl/42_projects/cub3D/textures/NO.xpm
+SO /Users/kprzybyl/42_projects/cub3D/textures/SO.xpm
+WE /Users/kprzybyl/42_projects/cub3D/textures/WE.xpm
+EA /Users/kprzybyl/42_projects/cub3D/textures/EA.xpm
 
 F 220,-100,0
 C 225,30,0

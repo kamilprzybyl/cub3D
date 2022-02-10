@@ -1,87 +1,124 @@
-#include "get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsiller <jsiller@student.42heilbronn.de    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/22 11:07:17 by jsiller           #+#    #+#             */
+/*   Updated: 2021/06/28 09:20:55 by jsiller          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	ft_strlen(const char *s)
+#include "get_next_line.h"
+#include <limits.h>
+
+int	ft_start(char **buf, int fd, int *ret)
 {
-	size_t	i;
+	buf[fd] = malloc(BUFFER_SIZE + 1);
+	if (!buf[fd])
+		return (-1);
+	*ret = read(fd, buf[fd], BUFFER_SIZE);
+	if (*ret < 0)
+	{
+		free(buf[fd]);
+		return (-1);
+	}
+	buf[fd][*ret] = 0;
+	return (0);
+}
+
+int	ft_in_while_a(char **buf, char *cat, char **tmp)
+{
+	int	i;
 
 	i = 0;
-	while (((char *)s)[i] != '\0')
+	while ((*buf)[i])
 	{
+		cat[i] = (*buf)[i];
 		i++;
 	}
-	return (i);
-}
-
-static void	delete_string(char **s)
-{
-	free(*s);
-	*s = NULL;
-}
-
-static char	*return_line(int ret, char **s)
-{
-	int		nl_index;
-	char	*tmp;
-	char	*line;
-
-	if (ret < 0)
-		return (NULL);
-	else if (ret == 0 && *s == NULL)
-		return (NULL);
-	nl_index = (int)(ft_strchr(*s, '\n') - *s);
-	if (ft_strchr(*s, '\n'))
+	i = 0;
+	while ((*tmp)[i])
 	{
-		line = ft_substr(*s, 0, nl_index + 1);
-		tmp = ft_strdup(&((*s)[nl_index + 1]));
-		free(*s);
-		*s = tmp;
-		if ((*s)[0] == '\0')
-			delete_string(s);
+		cat[i + ft_strlen(*buf)] = (*tmp)[i];
+		i++;
 	}
-	else
-	{
-		line = ft_strdup(*s);
-		delete_string(s);
-	}
-	return (line);
+	cat[i + ft_strlen(*buf)] = 0;
+	free(*tmp);
+	free(*buf);
+	*buf = cat;
+	return (1);
 }
 
-static int	read_to_buff(int fd, char **s, char **buff)
+int	ft_in_while(char **buf, int fd, int *ret)
 {
-	int		ret;
+	char	*tmp;
+	char	*cat;
+
+	tmp = malloc(BUFFER_SIZE + 1);
+	if (!tmp)
+		return (-1);
+	*ret = read(fd, tmp, BUFFER_SIZE);
+	if (*ret < 0)
+	{
+		free(tmp);
+		return (-1);
+	}
+	tmp[*ret] = 0;
+	cat = malloc(ft_strlen(buf[fd]) + ft_strlen(tmp) + 1);
+	if (!cat)
+	{
+		free(tmp);
+		return (-1);
+	}
+	return ((ft_in_while_a(&(buf[fd]), cat, &tmp)));
+}
+
+int	ft_if_nl(char **buf, char **line)
+{
+	int		i;
 	char	*tmp;
 
-	ret = read(fd, *buff, BUFFER_SIZE);
-	while (ret > 0)
+	i = 0;
+	while ((*buf)[i] != 10)
+		i++;
+	*line = ft_strdup(*buf);
+	if (!*line)
+		return (-1);
+	(*line)[i] = 0;
+	tmp = ft_strdup(&((*buf)[i + 1]));
+	if (!tmp)
+		return (-1);
+	free((*buf));
+	*buf = tmp;
+	return (1);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	int			ret;
+	static char	*buf[OPEN_MAX];
+
+	ret = BUFFER_SIZE;
+	if (fd >= 0 && BUFFER_SIZE > 0 && fd < OPEN_MAX)
 	{
-		(*buff)[ret] = '\0';
-		if (*s == NULL)
-			*s = ft_strdup(*buff);
+		if (!buf[fd] && ft_start(buf, fd, &ret))
+			return (-1);
+		while (!ft_nl(buf[fd]) && BUFFER_SIZE == ret)
+			if (ft_in_while(buf, fd, &ret) == -1)
+				return (-1);
+		if (ft_nl(buf[fd]))
+			return (ft_if_nl(&(buf[fd]), line));
 		else
 		{
-			tmp = ft_strjoin(*s, *buff);
-			free(*s);
-			*s = tmp;
+			*line = ft_strdup(buf[fd]);
+			if (!*line)
+				return (-1);
+			free(buf[fd]);
+			buf[fd] = NULL;
+			return (0);
 		}
-		if (ft_strchr(*s, '\n'))
-			break ;
-		ret = read(fd, *buff, BUFFER_SIZE);
 	}
-	free(*buff);
-	return (ret);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*s;
-	int			ret;
-	char		*buff;
-
-	if (fd < 0)
-		return (NULL);
-	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (fd < 0 || buff == NULL)
-		return (buff);
-	ret = read_to_buff(fd, &s, &buff);
-	return (return_line(ret, &s));
+	return (-1);
 }
