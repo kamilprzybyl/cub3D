@@ -1,54 +1,100 @@
 #include <cub3D.h>
 
-// static int	validate_map(char **argv)
-// {
+static int	load_textures(void)
+{
+	int	i;
 
-// }
+	i = 0;
+	while (i < 4)
+	{
+		data()->img[i].ptr_img = mlx_xpm_file_to_image(data()->mlx,
+				data()->xpm[i], &(data()->img[i].width), &(data()->img[i].height));
+		if (!data()->img[i].ptr_img)
+			return (1);
+		data()->img[i].addr = mlx_get_data_addr(data()->img[i].ptr_img,
+				&data()->img[i].bits_per_pixel, &data()->img[i].line_len,
+				&data()->img[i].endian);
+		if (!data()->img[i].addr)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
-// static int	load_images(void)
-// {
-// 	int	i;
+static int	colors(void)
+{
+	char	**rgb;
 
-// 	i = 0;
-// 	while (data()->xpm[i])
-// 	{
-// 		data()->img[i].ptr_img = mlx_xpm_file_to_image(data()->mlx,
-// 				data()->xpm[i], &(data()->img[i].width), &(data()->img[i].height));
-// 		data()->img[i].addr = mlx_get_data_addr(data()->img[i].ptr_img,
-// 				&data()->img[i].bits_per_pixel, &data()->img[i].line_len,
-// 				&data()->img[i].endian);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	rgb = ft_split(data()->xpm[4], ',');
+	data()->floor = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	ft_free(rgb);
+	rgb = ft_split(data()->xpm[5], ',');
+	data()->ceilling = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	ft_free(rgb);
+	return (0);
+}
 
-// static char	**read_map(int fd, char **argv)
-// {
-// 	int		j;
-// 	char	*line;
+static int	check_empty_space(int i, int j)
+{
+	if (data()->map[i][j] == ' ')
+	{
+		if (i != 0 && data()->map[i - 1][j] == '0')
+			return (1);
+		if (data()->map[i + 1] && data()->map[i + 1][j] && data()->map[i + 1][j] == '0')
+			return (1);
+		if (j != 0 && data()->map[i][j - 1] == '0')
+			return (1);
+		if (data()->map[i][j + 1] && data()->map[i][j + 1] == '0')
+			return (1);
+	}
+	return (0);
+}
 
-// 	j = 0;
-// 	data()->map = malloc(sizeof(char *) * (get_num_of_rows(argv[1]) + 1));
-// 	if (!data()->map)
-// 		return (data()->map);
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (!line)
-// 			break ;
-// 		data()->map[j] = line;
-// 		j++;
-// 	}
-// 	data()->map[j] = NULL;
-// 	close(fd);
-// 	return (data()->map);
-// }
+static int	check_edge(int i, int j)
+{
+	if (i == 0 || !data()->map[i + 1] || j == 0 || !data()->map[i][j + 1])
+	{
+		if (data()->map[i][j] == '0')
+			return (1);
+	}
+	return (0);
+}
 
-void	init()
-{ 
+static int	validate_map(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data()->map[i])
+	{
+		j = 0;
+		while (data()->map[i][j])
+		{
+			if (check_edge(i, j) == 1)
+				return (1);
+			if (check_empty_space(i, j) == 1)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	init(void)
+{
 	data()->mlx = mlx_init();
-	// data()->map = read_map(fd, argv);
-	// printf("init\n");
-	// load_images();
-	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "data()3D");
+	if (load_textures() == 1)
+	{
+		write(1, "Error\nCannot load textures\n", 27);
+		exit(1);
+	}
+	if (validate_map() == 1)
+	{
+		write(1, "Error\nInvalid map\n", 18);
+		exit(1);
+	}
+	colors();
+	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "cub3D");
 }

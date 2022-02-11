@@ -26,14 +26,6 @@ static int	textures(char **line)
 	return (0);
 }
 
-// static void	colors((char **line)
-// {
-// 	if (ft_strncmp(line, "F", 1) == 0)
-
-// 	if (ft_strncmp(line, "C", 1) == 0)
-// 	return (0);
-// }
-
 static int	map(char **line)
 {
 	int		i;
@@ -89,10 +81,6 @@ int	parse(int fd)
 		if (ft_strlen(line) == 0)
 			free(line);
 	}
-	// for (int i = 0; i < 6; i++)
-	// 	printf("%s\n", data()->xpm[i]);
-	for (int i = 0; data()->map[i]; i++)
-		printf("%s\n", data()->map[i]);
 	close(fd);
 	return (0);
 }

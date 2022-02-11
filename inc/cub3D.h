@@ -21,11 +21,13 @@ typedef struct s_img {
 
 typedef struct s_cub
 {
-	void	*mlx;
-	void	*win;
-	t_img	img[4];
-	char	**xpm;
-	char	**map;
+	void			*mlx;
+	void			*win;
+	t_img			img[4];
+	char			**xpm;
+	char			**map;
+	unsigned long	floor;
+	unsigned long	ceilling;
 }				t_cub;
 
 # define ESC 53
@@ -43,5 +45,8 @@ int		parse(int fd);
 void	init();
 int		key_hook(int keycode, void *unused);
 int		mouse_events(int keycode);
+
+void			ft_free(char **arr);
+unsigned long	rgb_to_hex(int r, int g, int b);
 
 #endif
