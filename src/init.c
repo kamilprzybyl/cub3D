@@ -21,14 +21,14 @@ static int	load_textures(void)
 	return (0);
 }
 
-static int	colors(void)
+static int	convert_colors(void)
 {
 	char	**rgb;
 
-	rgb = ft_split(data()->xpm[4], ',');
+	rgb = ft_split(data()->rgb[0], ',');
 	data()->floor = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	ft_free(rgb);
-	rgb = ft_split(data()->xpm[5], ',');
+	rgb = ft_split(data()->rgb[1], ',');
 	data()->ceilling = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 	ft_free(rgb);
 	return (0);
@@ -65,12 +65,16 @@ static int	validate_map(void)
 	int	i;
 	int	j;
 
+	if (ft_arrlen(data()->map) < 3)
+		return (1);
 	i = 0;
 	while (data()->map[i])
 	{
 		j = 0;
 		while (data()->map[i][j])
 		{
+			if (ft_strlen(data()->map[i]) == 0 || data()->map[i][0] == '\n')
+				return (1);
 			if (check_edge(i, j) == 1)
 				return (1);
 			if (check_empty_space(i, j) == 1)
@@ -95,6 +99,6 @@ void	init(void)
 		write(1, "Error\nInvalid map\n", 18);
 		exit(1);
 	}
-	colors();
+	convert_colors();
 	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "cub3D");
 }

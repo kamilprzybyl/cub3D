@@ -28,7 +28,9 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	init(fd, argv);
-	// system("leaks cub3D");
+	// for (int i = 0; data()->map[i]; i++)
+	// 	printf("%s\n", data()->map[i]);
+	system("leaks cub3D");
 	mlx_key_hook(data()->win, key_hook, NULL);
 	mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
 	mlx_loop(data()->mlx);

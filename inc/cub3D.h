@@ -24,7 +24,8 @@ typedef struct s_cub
 	void			*mlx;
 	void			*win;
 	t_img			img[4];
-	char			**xpm;
+	char			*xpm[4];
+	char			*rgb[2];
 	char			**map;
 	unsigned long	floor;
 	unsigned long	ceilling;
@@ -48,5 +49,6 @@ int		mouse_events(int keycode);
 
 void			ft_free(char **arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
+int				ft_arrlen(char **arr);
 
 #endif

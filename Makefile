@@ -9,6 +9,7 @@ SRC		=	src/main.c \
 			src/hooks.c \
 			src/utils/ft_free.c \
 			src/utils/rgb_to_hex.c \
+			src/utils/ft_arrlen.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c
 OBJ = 	$(SRC:.c=.o)

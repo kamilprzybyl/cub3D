@@ -1,59 +1,78 @@
 #include <cub3D.h>
 
-static int	textures(char **line)
+static int	textures(char *line)
 {
-	if (!data()->xpm)
-	{
-		data()->xpm = malloc(sizeof(char *) * (6 + 1));
-		if (!data()->xpm)
-			return (1);
-		data()->xpm[6] = NULL;
-	}
-	if (ft_strncmp(*line, "NO", 2) == 0)
-		data()->xpm[0] = &(*line)[3];
-	else if (ft_strncmp(*line, "SO", 2) == 0)
-		data()->xpm[1] = &(*line)[3];
-	else if (ft_strncmp(*line, "WE", 2) == 0)
-		data()->xpm[2] = &(*line)[3];
-	else if (ft_strncmp(*line, "EA", 2) == 0)
-		data()->xpm[3] = &(*line)[3];
-	else if (ft_strncmp(*line, "F", 1) == 0)
-		data()->xpm[4] = &(*line)[2];
-	else if (ft_strncmp(*line, "C", 1) == 0)
-		data()->xpm[5] = &(*line)[2];
-	else
-		return (-1);
+	char	**tokens;
+
+	if (ft_strlen(line) == 0)
+		return (0);
+	tokens = ft_split(line, ' ');
+	if (!tokens[0])
+		return (1);
+	if (ft_strncmp(tokens[0], "NO", 2) == 0)
+		data()->xpm[0] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "SO", 2) == 0)
+		data()->xpm[1] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "WE", 2) == 0)
+		data()->xpm[2] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "EA", 2) == 0)
+		data()->xpm[3] = ft_strdup(tokens[1]);
+	ft_free(tokens);
 	return (0);
 }
 
-static int	map(char **line)
+static int	rgb(char *line)
 {
-	int		i;
-	char	**tmp;
+	char	**tokens;
 
+	if (ft_strlen(line) == 0)
+		return (0);
+	tokens = ft_split(line, ' ');
+	if (!tokens[0])
+		return (1);
+	if (ft_strncmp(tokens[0], "F", 1) == 0)
+		data()->rgb[0] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "C", 1) == 0){
+		data()->rgb[1] = ft_strdup(tokens[1]);}
+	ft_free(tokens);
+	return (0);
+}
+
+char	**ft_realloc(char **ptr, int size, char *line)
+{
+	char	**new_ptr;
+	int		i;
+
+	i = 0;
+	new_ptr = malloc(sizeof(char *) * size);
+	if (!new_ptr)
+		return (NULL);
+	while (ptr[i])
+	{
+		new_ptr[i] = ptr[i];
+		i++;
+	}
+	new_ptr[i] = ft_strdup(line);
+	new_ptr[i + 1] = NULL;
+	free(ptr);
+	return (new_ptr);
+}
+
+static int	map(char *line)
+{
 	if (!data()->map)
 	{
-		data()->map = malloc(sizeof(char *) * 1);
+		data()->map = malloc(sizeof(char *) * 2);
 		if (!data()->map)
 			return (1);
-		data()->map[0] = NULL;
+		data()->map[0] = ft_strdup(line);
+		data()->map[1] = NULL;
 	}
-	i = 0;
-	while (data()->map[i])
-		i++;
-	tmp = malloc(sizeof(char *) * (i + 1 + 1));
-	if (!tmp)
-		return (1);
-	i = 0;
-	while (data()->map[i])
+	else
 	{
-		tmp[i] = data()->map[i];
-		i++;	
+		data()->map = ft_realloc(data()->map, ft_arrlen(data()->map) + 2, line);
+		// data()->map[ft_arrlen(data()->map) - 1] = ft_strdup(line);
 	}
-	tmp[i] = *line;
-	tmp[i + 1] = NULL;
-	free(data()->map);
-	data()->map = tmp;
 	return (0);
 }
 
@@ -61,26 +80,64 @@ int	parse(int fd)
 {
 	char	*line;
 	int		ret;
-	int		text;
-	int		i;
 
-	i = 0;
 	while (1)
 	{
 		ret = get_next_line(fd, &line);
-		text = textures(&line);
-		if (text == 1)
+		if (ret == -1)
 			return (1);
-		if (data()->xpm[5] && text != 0 && ft_strlen(line) != 0)
+		if (!data()->xpm[3])
 		{
-			if (map(&line) == 1)
+			if (textures(line) == 1)
 				return (1);
 		}
-		if (ret == 0 || ret == -1)
+		else if (!data()->rgb[1])
+		{
+			if (rgb(line) == 1)
+				return (1);
+		}
+		else if (ft_strlen(line) == 0)
+		{
+			;
+		}
+		else
+		{
+			if (map(line) == 1)
+				return (1);
+		}
+		free(line);
+		if (ret == 0)
 			break ;
-		if (ft_strlen(line) == 0)
-			free(line);
 	}
 	close(fd);
 	return (0);
 }
+// int	parse(int fd)
+// {
+// 	char	*line;
+// 	int		ret;
+
+// 	while (!data()->rgb[1])
+// 	{
+// 		ret = get_next_line(fd, &line);
+// 		if (ret == -1 || textures(line) == 1 || rgb(line) == 1)
+// 			return (1);
+// 		free(line);
+// 		if (ret == 0)
+// 			break ;
+// 	}
+// 	ret = get_next_line(fd, &line);
+// 	while (1)
+// 	{
+// 		ret = get_next_line(fd, &line);
+// 		if (ret == -1 || map(line) == 1)
+// 			return (1);
+// 		free(line);
+// 		if (ret == 0)
+// 			break ;
+// 	}
+// 	for (int i = 0; data()->map[i]; i++)
+// 		printf("%s\n", data()->map[i]);
+// 	close(fd);
+// 	return (0);
+// }
