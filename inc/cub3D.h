@@ -24,8 +24,8 @@ typedef struct s_cub
 	void			*mlx;
 	void			*win;
 	t_img			img[4];
-	char			*xpm[4];
-	char			*rgb[2];
+	char			*xpm[5];
+	char			*rgb[3];
 	char			**map;
 	unsigned long	floor;
 	unsigned long	ceilling;
@@ -41,14 +41,23 @@ typedef struct s_cub
 # define LEFT 123
 # define RIGHT 124
 
-t_cub	*data(void);
-int		parse(int fd);
-void	init();
-int		key_hook(int keycode, void *unused);
-int		mouse_events(int keycode);
+t_cub			*data(void);
+
+int				parse(int fd);
+int				parse_info(int fd);
+int				parse_map(int fd);
+
+void			init();
+int				init_colors(void);
+int				init_textures(void);
+int				validate_map(void);
+
+int				key_hook(int keycode, void *unused);
+int				mouse_events(int keycode);
 
 void			ft_free(char **arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
 int				ft_arrlen(char **arr);
+char			**ft_realloc(char **ptr, int size);
 
 #endif

@@ -10,4 +10,5 @@ void	ft_free(char **arr)
 		free(arr[i]);
 		i++;
 	}
+	free(arr);
 }
