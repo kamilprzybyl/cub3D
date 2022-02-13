@@ -8,6 +8,11 @@ void	init(void)
 		write(1, "Error\nCannot load textures\n", 27);
 		exit(1);
 	}
+	if (init_colors() == 1)
+	{
+		write(1, "Error\nCannot load colors\n", 25);
+		exit(1);
+	}
 	if (validate_map() == 1)
 	{
 		write(1, "Error\nInvalid map\n", 18);

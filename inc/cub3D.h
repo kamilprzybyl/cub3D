@@ -43,7 +43,7 @@ typedef struct s_cub
 
 t_cub			*data(void);
 
-int				parse(int fd);
+int				parse(char *file);
 int				parse_info(int fd);
 int				parse_map(int fd);
 
