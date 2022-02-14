@@ -7,7 +7,7 @@
 # include <fcntl.h> 
 # include "../mlx/mlx.h"
 # include "../Libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "../gnl/get_next_line.h"
 
 typedef struct s_img {
 	void	*ptr_img;

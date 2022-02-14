@@ -22,7 +22,7 @@ static int	is_closed(int i, int j)
 	return (0);
 }
 
-static int	find_char(char character)
+static int	find(char character)
 {
 	int	i;
 	int	j;
@@ -48,15 +48,27 @@ static int	check_chars(void)
 {
 	int	amount;
 
-	if (!find_char(' ') || !find_char('1') || !find_char('0'))
+	if (!find(' ') || !find('1') || !find('0'))
 		return (1);
 	amount = 0;
-	amount += find_char('N');
-	amount += find_char('S');
-	amount += find_char('E');
-	amount += find_char('W');
+	amount += find('N');
+	amount += find('S');
+	amount += find('E');
+	amount += find('W');
 	if (amount != 1)
 		return (1);
+	return (0);
+}
+
+static int	is_end(int index)
+{
+	index++;
+	while (data()->map[index])
+	{
+		if (ft_strlen(data()->map[index]) > 0)
+			return (1);
+		index++;
+	}
 	return (0);
 }
 
@@ -73,7 +85,8 @@ int	validate_map(void)
 	while (data()->map[i])
 	{
 		if (ft_strlen(data()->map[i]) == 0)
-			return (1);
+			if (is_end(i) == 1)
+				return (1);
 		j = 0;
 		while (data()->map[i][j])
 		{

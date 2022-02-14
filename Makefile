@@ -1,7 +1,10 @@
-FLAGS	=	-Wall -Wextra -Werror ./Libft/libft.a -L ./mlx -lmlx -framework OpenGL -framework AppKit
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=100
 NAME	=	cub3D
 MLX		=	mlx/libmlx.a
+MFLAGS	=	-framework OpenGL -framework AppKit
 LIBFT	=	Libft/libft.a
+INC		=	./inc/
 SRC		=	src/main.c \
 			src/mouse.c \
 			src/hooks.c \
@@ -16,17 +19,17 @@ SRC		=	src/main.c \
 			src/init/init_colors.c \
 			src/init/init_textures.c \
 			src/init/validate_map.c \
-			get_next_line/get_next_line.c \
-			get_next_line/get_next_line_utils.c
+			gnl/get_next_line.c \
+			gnl/get_next_line_utils.c
 OBJ = 	$(SRC:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c
-	gcc -c -Wall -Werror -Wextra -I ./inc/ -D BUFFER_SIZE=100 $^ -o $@
+	$(CC) -c $(CFLAGS) -I $(INC) $^ -o $@
 
 $(NAME): $(MLX) $(LIBFT) $(OBJ)
-	gcc $(FLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(MFLAGS) $^ -o $@
 
 $(MLX):
 	make --directory=./mlx
