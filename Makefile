@@ -11,14 +11,15 @@ SRC		=	src/main.c \
 			src/parsing/parse.c \
 			src/parsing/parse_info.c \
 			src/parsing/parse_map.c \
-			src/utils/ft_free.c \
-			src/utils/rgb_to_hex.c \
-			src/utils/ft_arrlen.c \
-			src/utils/ft_realloc.c \
 			src/init/init.c \
 			src/init/init_colors.c \
 			src/init/init_textures.c \
 			src/init/validate_map.c \
+			src/utils/ft_free.c \
+			src/utils/rgb_to_hex.c \
+			src/utils/ft_arrlen.c \
+			src/utils/ft_realloc.c \
+			src/utils/get_ext.c \
 			gnl/get_next_line.c \
 			gnl/get_next_line_utils.c
 OBJ = 	$(SRC:.c=.o)

@@ -4,6 +4,11 @@ int	parse(char *file)
 {
 	int	fd;
 
+	if (ft_strncmp(get_ext(file), "cub", 5) != 0)
+	{
+		write(2, "Error\nInvalid extension\n", 24);
+		exit(1);
+	}
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{

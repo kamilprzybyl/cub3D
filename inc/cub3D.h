@@ -59,5 +59,6 @@ void			ft_free(char **arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
 int				ft_arrlen(char **arr);
 char			**ft_realloc(char **ptr, int size);
+const char		*get_ext(const char *file);
 
 #endif
