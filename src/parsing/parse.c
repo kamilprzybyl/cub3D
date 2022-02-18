@@ -4,7 +4,7 @@ int	parse(char *file)
 {
 	int	fd;
 
-	if (ft_strncmp(get_ext(file), "cub", 5) != 0)
+	if (ft_strncmp(get_ext(file), "cub", 4) != 0)
 	{
 		write(2, "Error\nInvalid extension\n", 24);
 		exit(1);

@@ -3,10 +3,13 @@ C 225,30,0
 
 F 220,-100,0
 NO /Users/kprzybyl/42_projects/cub3D/textures/NO.xpm
-SO /Users/kprzybyl/42_projects/cub3D/textures/SO.xpm
+SO     /Users/kprzybyl/42_projects/cub3D/textures/SO.xpm
 WE /Users/kprzybyl/42_projects/cub3D/textures/WE.xpm
 EA /Users/kprzybyl/42_projects/cub3D/textures/EA.xpm
-        1111111111111111111111111
+
+
+
+        111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
         1001000000000000000000001
@@ -20,7 +23,7 @@ EA /Users/kprzybyl/42_projects/cub3D/textures/EA.xpm
 1000000000000000111010010001  1
 110000011101010111110111100111
 11110111 1110101 101111010001         1
-11111111 1111111 11111111111
+1 111111 1111111 11111111111
 
 
 

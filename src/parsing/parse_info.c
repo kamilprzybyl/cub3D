@@ -4,10 +4,8 @@ static int	textures(char *line)
 {
 	char	**tokens;
 
-	// if (ft_strlen(line) == 0)
-	// 	return (0);
 	tokens = ft_split(line, ' ');
-	if (!tokens[0])
+	if (!tokens)
 		return (1);
 	if (ft_arrlen(tokens) != 2)
 		return (1);
@@ -31,10 +29,8 @@ static int	rgb(char *line)
 {
 	char	**tokens;
 
-	// if (ft_strlen(line) == 0)
-	// 	return (0);
 	tokens = ft_split(line, ' ');
-	if (!tokens[0])
+	if (!tokens)
 		return (1);
 	if (ft_arrlen(tokens) != 2)
 		return (1);
@@ -58,9 +54,9 @@ int	parse_info(int fd)
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 			return (1);
-		if (ft_strlen(line) == 0)// && !data()->map)
+		if (ft_strlen(line) == 0)
 			;
-		if (textures(line) == 1 || rgb(line) == 1)
+		else if (textures(line) == 1 || rgb(line) == 1)
 			return (1);
 		free(line);
 		if (ret == 0)

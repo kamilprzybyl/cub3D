@@ -16,6 +16,9 @@ int	main(int argc, char **argv)
 	}
 	parse(argv[1]);
 	init();
-	launch(); // we gotta think about the name xd
+	// for (int i = 0; data()->map[i]; i++) {
+	// 	printf("[%s]\n", data()->map[i]);
+	// }
+	launch();
 	return (0);
 }

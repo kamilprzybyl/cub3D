@@ -8,6 +8,7 @@ INC		=	./inc/
 SRC		=	src/main.c \
 			src/mouse.c \
 			src/hooks.c \
+			src/launch.c \
 			src/parsing/parse.c \
 			src/parsing/parse_info.c \
 			src/parsing/parse_map.c \

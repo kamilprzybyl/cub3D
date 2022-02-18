@@ -52,6 +52,7 @@ int				init_colors(void);
 int				init_textures(void);
 int				validate_map(void);
 
+void			launch(void);
 int				key_hook(int keycode, void *unused);
 int				mouse_events(int keycode);
 
