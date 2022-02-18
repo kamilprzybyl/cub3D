@@ -18,6 +18,5 @@ void	init(void)
 		write(1, "Error\nInvalid map\n", 18);
 		exit(1);
 	}
-	init_colors();
 	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "cub3D");
 }
