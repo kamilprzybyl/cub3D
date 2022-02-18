@@ -12,6 +12,9 @@
 
 typedef struct s_var {
 
+	int		sWidth;
+	int		sHeight;
+
 	double	posX; //x start position
 	double	posY; //y start position
 	double	dirX; //initial direction vector x component
@@ -56,7 +59,7 @@ typedef struct s_var {
 	int		drawEnd;
 
 	//choose wall color
-	//..
+	int		color;
 
 	//timing for input and FPS counter
 	double	frameTime; //time this frame has taken, in seconds

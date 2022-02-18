@@ -19,5 +19,7 @@ void	init(void)
 		exit(1);
 	}
 	init_colors();
-	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "cub3D");
+	data()->sWidth = 2000;
+	data()->sHeight = 1000;
+	data()->win = mlx_new_window(data()->mlx, data()->var.sWidth, data()->var.sHeight, "cub3D");
 }
