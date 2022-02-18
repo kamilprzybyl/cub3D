@@ -1,5 +1,15 @@
 #include <cub3D.h>
 
+void	setColor(void)
+{
+	int	elmnt;
+
+	elmnt = data()->map[data()->var.mapY][data()->var.mapX];
+	if (elmnt == 1)
+		data()->var.color = 0x000080 //navy color
+}
+
+
 void	dda(void)
 {
 	while (data()->var.hit == 0)
@@ -29,7 +39,7 @@ void	raycast_loop(void)
 	int	x_max; // camera plane length (?), via FieldOfView (?)
 
 	x = 0;
-	while (x < x_max)
+	while (x < data()->var.screenWidth)
 	{
 		//calculate ray position and direction
 		data()->var.cameraX = 2 * x / (double) x_max - 1;
@@ -74,6 +84,19 @@ void	raycast_loop(void)
 		dda();
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 		if (data()->var.side == 0)
+			data()->var.perpWallDist = data()->var.sideDistX - data()->var.deltaDistX;
+		else
+			data()->var.perpWallDist = data()->var.sideDistY - data()->var.deltaDistY;
+		//Calculate height of line to draw on screen
+		data()->var.lineHeight = (int) (data()->var.sHeight / data()->var.perpWallDist);
+		//calculate lowest and highest pixel to fill in current stripe
+		data()->var.drawStart = (-1) * data()->var.lineHeight / 2 + data()->var.sHeight / 2;
+		if (data()->var.drawStart < 0)
+			data()->var.drawStart = 0;
+		data()->var.drawEnd = data()->var.lineHeight / 2 + h / 2;
+		if (data()->var.drawEnd >= data()->var.sHeight)
+			data()->var.drawEnd = data()->var.sHeight - 1;
+		setColor();
 		x++;
 	}
 }
@@ -85,12 +108,7 @@ void	launch(void)
 	mlx_loop(data()->mlx);
 	while (1)
 	{
-
 		raycast_loop();
-		//what direction to step in x or y-direction (either +1 or -1)
 
-
-		//Calculate height of line to draw on screen
-		//calculate lowest and highest pixel to fill in current stripe
 	}
 }

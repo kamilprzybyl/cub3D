@@ -18,5 +18,8 @@ void	init(void)
 		write(1, "Error\nInvalid map\n", 18);
 		exit(1);
 	}
-	data()->win = mlx_new_window(data()->mlx, 2000, 1000, "cub3D");
+	init_colors();
+	data()->sWidth = 2000;
+	data()->sHeight = 1000;
+	data()->win = mlx_new_window(data()->mlx, data()->var.sWidth, data()->var.sHeight, "cub3D");
 }
