@@ -83,7 +83,7 @@ typedef struct s_cub
 {
 	void			*mlx;
 	void			*win;
-	t_img			img[4];
+	t_img			img[5]; //changed for test case from 4 to 5
 	char			*xpm[5];
 	char			*rgb[3];
 	char			**map;
