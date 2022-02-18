@@ -23,6 +23,34 @@ static int	is_closed(int i, int j)
 	return (0);
 }
 
+static void	initVectors(int x, int y) {
+
+	data()->var.posX = x;
+	data()->var.posY = y;
+	if (data()->map[y][x] == 'N')
+	{
+		data()->var.dirX = 0;
+		data()->var.dirY = -1; //which dir is positive, which negative?
+	}
+	else if (data()->map[y][x] == 'S')
+	{
+		data()->var.dirX = 0;
+		data()->var.dirY = 1;
+	}
+	else if (data()->map[y][x] == 'E')
+	{
+		data()->var.dirX = 1;
+		data()->var.dirY = 0;
+	}
+	else if (data()->map[y][x] == 'W')
+	{
+		data()->var.dirX = -1;
+		data()->var.dirY = 0;
+	}
+	data()->var.planeX = 0;
+	data()->var.planeY = 0.66;
+}
+
 static int	check_chars(void)
 {
 	int	i;
@@ -39,8 +67,10 @@ static int	check_chars(void)
 			if (!ft_strchr(" 10NSEW", data()->map[i][j]))
 				return (0);
 			if (data()->map[i][j] == 'N' || data()->map[i][j] == 'S' \
-				|| data()->map[i][j] == 'E' || data()->map[i][j] == 'W')
+				|| data()->map[i][j] == 'E' || data()->map[i][j] == 'W') {
+				initVectors(j, i);
 				count++;
+				}
 			j++;
 		}
 		i++;
