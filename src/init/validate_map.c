@@ -62,13 +62,17 @@ static int	check_chars(void)
 
 static int	is_end(int index)
 {
-	index++;
-	while (data()->map[index])
+	int	i;
+
+	i = index;
+	i++;
+	while (data()->map[i])
 	{
-		if (ft_strlen(data()->map[index]) > 0)
+		if (ft_strlen(data()->map[i]) > 0)
 			return (1);
-		index++;
+		i++;
 	}
+	data()->map[index] = NULL;
 	return (0);
 }
 
@@ -85,8 +89,12 @@ int	validate_map(void)
 	while (data()->map[i])
 	{
 		if (ft_strlen(data()->map[i]) == 0)
+		{
 			if (is_end(i) == 1)
 				return (1);
+			else
+				return (0);
+		}	
 		j = 0;
 		while (data()->map[i][j])
 		{
