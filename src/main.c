@@ -16,8 +16,6 @@ int	main(int argc, char **argv)
 	}
 	parse(argv[1]);
 	init();
-	mlx_key_hook(data()->win, key_hook, NULL);
-	mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
-	mlx_loop(data()->mlx);
+	launch(); // we gotta think about the name xd
 	return (0);
 }
