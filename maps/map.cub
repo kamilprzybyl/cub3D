@@ -2,10 +2,10 @@
 C 225,30,0
 
 F 220,-100,0
-NO /Users/mstrantz/Workspace/cub3d_forked/textures/NO.xpm
-SO     /Users/mstrantz/Workspace/cub3d_forked/textures/SO.xpm
-WE /Users/mstrantz/Workspace/cub3d_forked/textures/WE.xpm
-EA /Users/mstrantz/Workspace/cub3d_forked/textures/EA.xpm
+NO /Users/kprzybyl/42_projects/cub3D/textures/NO.xpm
+SO /Users/kprzybyl/42_projects/cub3D/textures/SO.xpm
+WE /Users/kprzybyl/42_projects/cub3D/textures/WE.xpm
+EA /Users/kprzybyl/42_projects/cub3D/textures/EA.xpm
 
         111111111111111111111111
         10000S0000110000000000001

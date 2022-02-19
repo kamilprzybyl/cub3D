@@ -48,24 +48,44 @@ int	key_hook(int keycode, void *unused)
 {
 	if (keycode == ESC)
 		ft_close();
-	else if (keycode == W || keycode == UP)
+	else if (keycode == W)
 	{
-		if (data()->map[(int) (data()->var.posX + data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
-			data()->var.posX += data()->var.dirX * data()->var.moveSpeed;
-		if (data()->map[(int) data()->var.posX][(int) (data()->var.posY + data()->var.dirY * data()->var.moveSpeed)] == 0)
+		// if (data()->map[(int)(data()->var.posX + data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
+			// printf("speed = %f", data()->var.moveSpeed);
+			// data()->var.posX += data()->var.dirX * data()->var.moveSpeed;
+		// if (data()->map[(int) data()->var.posX][(int) (data()->var.posY + data()->var.dirY * data()->var.moveSpeed)] == 0)
+			// printf("w = %f\n", data()->var.dirY * data()->var.moveSpeed);
 			data()->var.posY += data()->var.dirY * data()->var.moveSpeed;
 	}
-	else if (keycode == A || keycode == LEFT)
+	else if (keycode == LEFT)
 		rotate_left();
-	else if (keycode == S || keycode == DOWN)
+	else if (keycode == A)
 	{
-		if (data()->map[(int) (data()->var.posX - data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
-			data()->var.posX -= data()->var.dirX * data()->var.moveSpeed;
-		if (data()->map[(int) data()->var.posX][(int) (data()->var.posY - data()->var.dirY * data()->var.moveSpeed)] == 0)
+		// if (data()->map[(int) (data()->var.posX - data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
+			data()->var.posX += data()->var.dirY * data()->var.moveSpeed;
+		// if (data()->map[(int) data()->var.posX][(int) (data()->var.posY - data()->var.dirY * data()->var.moveSpeed)] == 0)
+			// data()->var.posY -= data()->var.dirY;// * data()->var.moveSpeed;
+	}
+	else if (keycode == S)
+	{
+		// if (data()->map[(int) (data()->var.posX - data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
+			// data()->var.posX -= data()->var.dirX * data()->var.moveSpeed;
+		// if (data()->map[(int) data()->var.posX][(int) (data()->var.posY - data()->var.dirY * data()->var.moveSpeed)] == 0)
+			// printf("s = %f\n", data()->var.dirY * data()->var.moveSpeed);
 			data()->var.posY -= data()->var.dirY * data()->var.moveSpeed;
 	}
-	else if (keycode == D || keycode == RIGHT)
+	else if (keycode == RIGHT)
+	{
 		rotate_right();
+	}
+	else if (keycode == D)
+	{
+		// if (data()->map[(int) (data()->var.posX - data()->var.dirX * data()->var.moveSpeed)][(int) data()->var.posY] == 0)
+			// printf("d = %f\n", data()->var.dirX * data()->var.moveSpeed);
+			data()->var.posX -= data()->var.dirY * data()->var.moveSpeed;
+		// if (data()->map[(int) data()->var.posX][(int) (data()->var.posY - data()->var.dirY * data()->var.moveSpeed)] == 0)
+			// data()->var.posY -= data()->var.dirY;// * data()->var.moveSpeed;
+	}
 	return (1);
 	(void)unused;
 }
