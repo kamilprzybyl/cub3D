@@ -23,7 +23,7 @@ static int	is_closed(int i, int j)
 	return (0);
 }
 
-static void	setValue(double dirX, double dirY, double planeX, double planeY)
+static void	setValues(double dirX, double dirY, double planeX, double planeY)
 {
 	data()->var.dirX = dirX;
 	data()->var.dirY = dirY;
@@ -33,17 +33,16 @@ static void	setValue(double dirX, double dirY, double planeX, double planeY)
 
 static void	initVectors(int x, int y) {
 
-	//which dir is positive, which negative?
 	data()->var.posX = x + 0.5;
 	data()->var.posY = y + 0.5;
 	if (data()->map[y][x] == 'N')
-		setValue(0, -1, 0.66, 0);
+		setValues(0, -1, 0.66, 0);
 	else if (data()->map[y][x] == 'S')
-		setValue(0, 1, -0.66, 0);
+		setValues(0, 1, -0.66, 0);
 	else if (data()->map[y][x] == 'E')
-		setValue(1, 0, 0, 0.66);
+		setValues(1, 0, 0, 0.66);
 	else if (data()->map[y][x] == 'W')
-		setValue(-1, 0, 0, -0.66);
+		setValues(-1, 0, 0, -0.66);
 }
 
 static int	check_chars(void)

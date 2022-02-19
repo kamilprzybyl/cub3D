@@ -115,6 +115,25 @@ int				init_colors(void);
 int				init_textures(void);
 int				validate_map(void);
 
+void			calc_ray_pos_and_dir(int x);
+void			set_box_pos(void);
+void			calc_delta_dist(void);
+void			calc_step_and_side_dist(void);
+
+void			dda(void);
+void			raycast_loop(void);
+
+void			calc_dist_perp(void);
+void			calc_vertical_line_height(void);
+void			calc_draw_start_and_draw_end(void);
+
+void			my_mlx_pixel_put(int x, int y, int color);
+void			set_color(void);
+void			draw_vertical_line(int x);
+
+void			draw_floor(void);
+void			draw_ceiling(void);
+
 int				launch(void);
 int				key_hook(int keycode, void *unused);
 int				mouse_events(int keycode);
