@@ -83,7 +83,7 @@ typedef struct s_cub
 {
 	void			*mlx;
 	void			*win;
-	t_img			img[4];
+	t_img			img[5]; //changed for test case from 4 to 5
 	char			*xpm[5];
 	char			*rgb[3];
 	char			**map;
@@ -115,7 +115,7 @@ int				init_colors(void);
 int				init_textures(void);
 int				validate_map(void);
 
-void			launch(void);
+int				launch(void);
 int				key_hook(int keycode, void *unused);
 int				mouse_events(int keycode);
 

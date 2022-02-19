@@ -19,6 +19,10 @@ int	main(int argc, char **argv)
 	// for (int i = 0; data()->map[i]; i++) {
 	// 	printf("[%s]\n", data()->map[i]);
 	// }
-	launch();
+	//launch();
+	mlx_loop_hook(data()->mlx, launch, NULL);
+	mlx_key_hook(data()->win, key_hook, NULL);
+	mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
+	mlx_loop(data()->mlx);
 	return (0);
 }
