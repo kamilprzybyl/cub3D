@@ -31,7 +31,7 @@ void	rotate_right(void)
 	data()->var.planeX = data()->var.planeX * cos(-data()->var.rotSpeed) - data()->var.planeY * sin(-data()->var.rotSpeed);
 	data()->var.planeY = oldPlaneX * sin(-data()->var.rotSpeed) + data()->var.planeY * cos(-data()->var.rotSpeed);
 }
-//test
+
 int	key_hook(int keycode, void *unused)
 {
 	if (keycode == ESC)
