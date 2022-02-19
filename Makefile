@@ -12,6 +12,11 @@ SRC		=	src/main.c \
 			src/parsing/parse.c \
 			src/parsing/parse_info.c \
 			src/parsing/parse_map.c \
+			src/raycasting/drawingCeilingFloor.c \
+			src/raycasting/post_dda_calcs.c \
+			src/raycasting/pre_dda_calcs.c \
+			src/raycasting/rc_and_dda.c \
+			src/raycasting/verticalDrawing.c \
 			src/init/init.c \
 			src/init/init_colors.c \
 			src/init/init_textures.c \

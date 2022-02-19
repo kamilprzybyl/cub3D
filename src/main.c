@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/19 19:14:30 by kamilprzyby       #+#    #+#             */
+/*   Updated: 2022/02/19 19:17:25 by mstrantz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cub3D.h>
 
 t_cub	*data(void)
@@ -16,10 +28,6 @@ int	main(int argc, char **argv)
 	}
 	parse(argv[1]);
 	init();
-	// for (int i = 0; data()->map[i]; i++) {
-	// 	printf("[%s]\n", data()->map[i]);
-	// }
-	//launch();
 	mlx_loop_hook(data()->mlx, launch, NULL);
 	mlx_key_hook(data()->win, key_hook, NULL);
 	mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
