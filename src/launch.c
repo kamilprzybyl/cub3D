@@ -12,8 +12,6 @@ void	drawVerticalLine(int x)
 {
 	int	y;
 
-	//printf("drawStart %d\n", data()->var.drawStart);
-	//printf("drawEnd %d\n", data()->var.drawEnd);
 	y = data()->var.drawStart;
 	while (y < data()->var.drawEnd)
 	{
@@ -27,8 +25,8 @@ void	setColor(void)
 	int	elmnt;
 
 	elmnt = data()->map[data()->var.mapY][data()->var.mapX];
-	if (elmnt == 1)
-		data()->var.color = 0x000080; //navy color
+	if (elmnt == '1')
+		data()->var.color = 0x80FF00;
 	if (data()->var.side == 1)
 		data()->var.color = data()->var.color / 2;
 }
@@ -51,7 +49,7 @@ void	dda(void)
 			data()->var.side = 1;
 		}
 		//Check if ray has hit a wall
-		if (data()->map[data()->var.mapY][data()->var.mapX] > 0) //change order?!
+		if (data()->map[data()->var.mapY][data()->var.mapX] == '1')
 			data()->var.hit = 1;
 	}
 }
@@ -61,33 +59,26 @@ void	raycast_loop(void)
 	int	x;
 
 	x = 0;
-	while (x < 5) //data()->var.sWidth)
+	while (x < data()->var.sWidth)
 	{
 		//calculate ray position and direction
 		data()->var.cameraX = 2 * x / (double) data()->var.sWidth - 1;
-		printf("cameraX %f\n", data()->var.cameraX);
-		printf("dirX %f\n", data()->var.dirX);
-		printf("dirY %f\n", data()->var.dirY);
-		printf("planeX %f\n", data()->var.planeX);
-		printf("planeY %f\n", data()->var.planeY);
 		data()->var.rayDirX = data()->var.dirX + data()->var.planeX * data()->var.cameraX;
 		data()->var.rayDirY = data()->var.dirY + data()->var.planeY * data()->var.cameraX;
-		printf("rayDirX %f\n", data()->var.rayDirX);
-		printf("rayDirY %f\n", data()->var.rayDirY);
 		//which box of the map we're in
 		data()->var.mapX = (int) data()->var.posX;
 		data()->var.mapY = (int) data()->var.posY;
-		printf("mapX %d\n", data()->var.mapX);
-		printf("mapY %d\n", data()->var.mapY);
 		//length of ray from one x or y-side to next x or y-side
-		if (data()->var.rayDirX == 0)
-			data()->var.deltaDistX = 1e30;
-		else
-			data()->var.deltaDistX = fabs(1 / data()->var.rayDirX);
-		if (data()->var.rayDirY == 0)
-			data()->var.deltaDistY = 1e30;
-		else
-			data()->var.deltaDistY = fabs(1 / data()->var.rayDirY);
+		// if (data()->var.rayDirX == 0)
+		// 	data()->var.deltaDistX = 1e30;
+		// else
+		// 	data()->var.deltaDistX = fabs(1 / data()->var.rayDirX);
+		// if (data()->var.rayDirY == 0)
+		// 	data()->var.deltaDistY = 1e30;
+		// else
+		// 	data()->var.deltaDistY = fabs(1 / data()->var.rayDirY);
+		data()->var.deltaDistX = (data()->var.rayDirX == 0) ? 1e30 : fabs(1 / data()->var.rayDirX);
+		data()->var.deltaDistY = (data()->var.rayDirY == 0) ? 1e30 : fabs(1 / data()->var.rayDirY);
 		data()->var.hit = 0;
 		//calculate step and initial sideDist
 		if (data()->var.rayDirX < 0)
@@ -113,18 +104,12 @@ void	raycast_loop(void)
 		//DDA
 		dda();
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
-		printf("sideDistX %f\n", data()->var.sideDistX);
-		printf("sideDistY %f\n", data()->var.sideDistY);
-		printf("deltaDistX %f\n", data()->var.deltaDistX);
-		printf("deltaDistY %f\n", data()->var.deltaDistY);
 		if (data()->var.side == 0)
 			data()->var.perpWallDist = data()->var.sideDistX - data()->var.deltaDistX;
 		else
 			data()->var.perpWallDist = data()->var.sideDistY - data()->var.deltaDistY;
-		printf("perpWallDist %f\n", data()->var.perpWallDist);
 		//Calculate height of line to draw on screen
-		data()->var.lineHeight = (int) (data()->var.sHeight / data()->var.perpWallDist);
-		printf("lineHeight %d\n", data()->var.lineHeight);
+		data()->var.lineHeight = (int) (data()->var.sHeight / data()->var.perpWallDist) *2; //added *2, not part of the guide, but with j&a's version
 		//calculate lowest and highest pixel to fill in current stripe
 		data()->var.drawStart = (-1) * data()->var.lineHeight / 2 + data()->var.sHeight / 2;
 		if (data()->var.drawStart < 0)
@@ -132,37 +117,68 @@ void	raycast_loop(void)
 		data()->var.drawEnd = data()->var.lineHeight / 2 + data()->var.sHeight / 2;
 		if (data()->var.drawEnd >= data()->var.sHeight)
 			data()->var.drawEnd = data()->var.sHeight - 1;
-		printf("drawStart = %d; drawEnd = %d\n", data()->var.drawStart, data()->var.drawEnd);
 		setColor();
 		drawVerticalLine(x);
 		x++;
 	}
 }
 
-void	launch(void)
+void	drawFloor(void)
 {
-	int x;
+	int	i;
+	int	j;
+	int	color;
 
-	x = 0; //testing/debugging
-	while (x < 1)
+	color = 0x808080;
+	i = 0;
+	while (i < data()->var.sWidth)
 	{
-		raycast_loop();
-
-		//timing for input and FPS counter
-		//data()->var.oldTime =  data()->var.time;
-		//data()->var.time = function_to_get_time(?)
-		//data()->var.frameTime = (data()->var.time - data()->var.oldTime) / 1000.0;
-		//printf(1.0 / data()->var.frameTime);
-		//redraw(); something like put_image_to_window?
-		//cls(); (?)
-
-		//speed modifiers
-		data()->var.moveSpeed = data()->var.frameTime * 5.0;
-		data()->var.rotSpeed = data()->var.frameTime * 3.0;
-		mlx_put_image_to_window(data()->mlx, data()->win, data()->img[4].ptr_img, 0, 0);
-		//read key events
-		mlx_key_hook(data()->win, key_hook, NULL);
-		mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
-		mlx_loop(data()->mlx);
+		j = data()->var.sHeight / 2 - 1;
+		while (++j < data()->var.sHeight)
+		{
+			my_mlx_pixel_put(i, j, color);
+		}
+		i++;
 	}
+}
+
+void	drawCeiling(void)
+{
+	int	i;
+	int	j;
+	int	color;
+
+	color = 0x00FFFF;
+	i = 0;
+	while (i < data()->var.sWidth)
+	{
+		j = -1;
+		while (++j < data()->var.sHeight / 2)
+		{
+			my_mlx_pixel_put(i, j, color);
+		}
+		i++;
+	}
+}
+
+int	launch(void)
+{
+	data()->img[4].ptr_img = mlx_new_image(data()->mlx, data()->var.sWidth, data()->var.sHeight);
+	data()->img[4].addr = mlx_get_data_addr(data()->img[4].ptr_img, &data()->img[4].bits_per_pixel, \
+		&data()->img[4].line_len, &data()->img[4].endian);
+	drawFloor();
+	drawCeiling();
+	raycast_loop();
+	//timing for input and FPS counter
+	//data()->var.oldTime =  data()->var.time;
+	//data()->var.time = function_to_get_time(?)
+	//data()->var.frameTime = (data()->var.time - data()->var.oldTime) / 1000.0;
+	//printf(1.0 / data()->var.frameTime);
+
+	//speed modifiers
+	//data()->var.moveSpeed = data()->var.frameTime * 5.0;
+	//data()->var.rotSpeed = data()->var.frameTime * 3.0;
+	mlx_put_image_to_window(data()->mlx, data()->win, data()->img[4].ptr_img, 0, 0);
+	mlx_destroy_image(data()->mlx, data()->img[4].ptr_img);
+	return (0);
 }

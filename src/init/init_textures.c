@@ -18,8 +18,5 @@ int	init_textures(void)
 			return (1);
 		i++;
 	}
-	data()->img[i].ptr_img = mlx_new_image(data()->mlx, data()->var.sWidth, data()->var.sHeight); //added for testing
-	data()->img[i].addr = mlx_get_data_addr(data()->img[i].ptr_img, &data()->img[i].bits_per_pixel, \
-		&data()->img[i].line_len, &data()->img[i].endian);
 	return (0);
 }
