@@ -23,7 +23,7 @@ static int	is_closed(int i, int j)
 	return (0);
 }
 
-static void	setValues(double dirX, double dirY, double planeX, double planeY)
+static void	set_values(double dirX, double dirY, double planeX, double planeY)
 {
 	data()->var.dirX = dirX;
 	data()->var.dirY = dirY;
@@ -31,18 +31,18 @@ static void	setValues(double dirX, double dirY, double planeX, double planeY)
 	data()->var.planeY = planeY;
 }
 
-static void	initVectors(int x, int y) {
+static void	init_vectors(int x, int y) {
 
 	data()->var.posX = x + 0.5;
 	data()->var.posY = y + 0.5;
 	if (data()->map[y][x] == 'N')
-		setValues(0, -1, 0.66, 0);
+		set_values(0, -1, 0.66, 0);
 	else if (data()->map[y][x] == 'S')
-		setValues(0, 1, -0.66, 0);
+		set_values(0, 1, -0.66, 0);
 	else if (data()->map[y][x] == 'E')
-		setValues(1, 0, 0, 0.66);
+		set_values(1, 0, 0, 0.66);
 	else if (data()->map[y][x] == 'W')
-		setValues(-1, 0, 0, -0.66);
+		set_values(-1, 0, 0, -0.66);
 }
 
 static int	check_chars(void)
@@ -62,7 +62,7 @@ static int	check_chars(void)
 				return (0);
 			if (data()->map[i][j] == 'N' || data()->map[i][j] == 'S' \
 				|| data()->map[i][j] == 'E' || data()->map[i][j] == 'W') {
-				initVectors(j, i);
+				init_vectors(j, i);
 				count++;
 				}
 			j++;

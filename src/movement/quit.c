@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_hex.c                                       :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 17:14:54 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/20 17:14:55 by kprzybyl         ###   ########.fr       */
+/*   Created: 2022/02/20 16:38:36 by kprzybyl          #+#    #+#             */
+/*   Updated: 2022/02/20 16:38:41 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-unsigned long	rgb_to_hex(int r, int g, int b)
+void	quit(void)
 {
-	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
+	mlx_destroy_window(data()->mlx, data()->win);
+	exit(0);
 }

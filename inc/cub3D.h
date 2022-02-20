@@ -166,10 +166,19 @@ void			draw_floor(void);
 void			draw_ceiling(void);
 
 int				launch(void);
-int				key_hook(int keycode, void *unused);
+
+void			hooks(void);
 int				key_press(int keycode);
 int				key_release(int keycode);
 int				mouse_events(int keycode);
+
+void			rotate_left(void);
+void			rotate_right(void);
+void			move_forward(void);
+void			move_backwards(void);
+void			move_left(void);
+void			move_right(void);
+void			quit(void);
 
 void			ft_free(char **arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
