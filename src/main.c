@@ -29,9 +29,8 @@ int	main(int argc, char **argv)
 	parse(argv[1]);
 	init();
 	mlx_loop_hook(data()->mlx, launch, NULL);
-	mlx_key_hook(data()->win, key_hook, NULL);
-	// mlx_hook(data()->win, X_EVENT_KEY_PRESS, 0, &key_press, NULL);
-	// mlx_hook(data()->win, X_EVENT_KEY_RELEASE, 0, &key_release, NULL);
+	mlx_hook(data()->win, X_EVENT_KEY_PRESS, 0, &key_press, NULL);
+	mlx_hook(data()->win, X_EVENT_KEY_RELEASE, 0, &key_release, NULL);
 	mlx_hook(data()->win, 17, 1L << 0, mouse_events, NULL);
 	mlx_loop(data()->mlx);
 	return (0);

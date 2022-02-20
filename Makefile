@@ -6,12 +6,15 @@ MFLAGS	=	-framework OpenGL -framework AppKit
 LIBFT	=	Libft/libft.a
 INC		=	./inc/
 SRC		=	src/main.c \
-			src/mouse.c \
-			src/hooks.c \
 			src/launch.c \
 			src/parsing/parse.c \
 			src/parsing/parse_info.c \
 			src/parsing/parse_map.c \
+			src/hooks/mouse.c \
+			src/hooks/hooks.c \
+			src/movement/move.c \
+			src/movement/rotate.c \
+			src/movement/quit.c \
 			src/raycasting/drawingCeilingFloor.c \
 			src/raycasting/post_dda_calcs.c \
 			src/raycasting/pre_dda_calcs.c \

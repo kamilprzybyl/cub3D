@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:53:42 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/19 19:58:46 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/20 16:40:25 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	launch(void)
 	draw_floor();
 	draw_ceiling();
 	raycast_loop();
-
+	hooks();
 	data()->var.frameTime = 16 / 1000.0;
 	data()->var.moveSpeed = data()->var.frameTime * 5.0;
 	data()->var.rotSpeed = data()->var.frameTime * 3.0;
@@ -35,6 +35,3 @@ int	launch(void)
 	mlx_destroy_image(data()->mlx, data()->img[4].ptr_img);
 	return (0);
 }
-	//timing for input and FPS counter
-	// data()->var.oldTime =  data()->var.time;
-	// data()->var.time = function_to_get_time(?)
