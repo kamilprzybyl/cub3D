@@ -94,6 +94,16 @@ typedef struct s_img {
 	int		height;
 }				t_img;
 
+typedef struct s_move
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	right;
+	int	left;
+}				t_move;
+
 typedef struct s_cub
 {
 	void			*mlx;
@@ -106,6 +116,7 @@ typedef struct s_cub
 	unsigned long	ceilling;
 	t_var			var;
 	int				texture[4][TEX_HEIGHT * TEX_WIDTH];
+	t_move			move;
 }				t_cub;
 
 # define ESC 53
@@ -117,6 +128,8 @@ typedef struct s_cub
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_KEY_RELEASE	3
 
 # define screenWidth 640
 
@@ -155,6 +168,8 @@ void			draw_ceiling(void);
 
 int				launch(void);
 int				key_hook(int keycode, void *unused);
+int				key_press(int keycode);
+int				key_release(int keycode);
 int				mouse_events(int keycode);
 
 void			ft_free(char **arr);

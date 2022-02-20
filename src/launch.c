@@ -26,6 +26,7 @@ int	launch(void)
 	draw_floor();
 	draw_ceiling();
 	raycast_loop();
+
 	data()->var.frameTime = 16 / 1000.0;
 	data()->var.moveSpeed = data()->var.frameTime * 5.0;
 	data()->var.rotSpeed = data()->var.frameTime * 3.0;
