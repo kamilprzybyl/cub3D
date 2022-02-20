@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/20 17:16:07 by kprzybyl          #+#    #+#             */
+/*   Updated: 2022/02/20 17:19:44 by kprzybyl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cub3D.h>
 
 void	init(void)
@@ -18,7 +30,6 @@ void	init(void)
 		write(1, "Error\nInvalid map\n", 18);
 		exit(1);
 	}
-	//init_colors();
 	data()->var.sWidth = SCREEN_WIDTH;
 	data()->var.sHeight = SCREEN_HEIGHT;
 	data()->win = mlx_new_window(data()->mlx, data()->var.sWidth, data()->var.sHeight, "cub3D");
