@@ -19,7 +19,6 @@ typedef struct s_var {
 
 	int		sWidth;
 	int		sHeight;
-	uint32_t	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 	double	posX; //x start position
 	double	posY; //y start position
