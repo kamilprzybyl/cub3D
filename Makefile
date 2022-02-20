@@ -16,6 +16,7 @@ SRC		=	src/main.c \
 			src/raycasting/post_dda_calcs.c \
 			src/raycasting/pre_dda_calcs.c \
 			src/raycasting/rc_and_dda.c \
+			src/raycasting/tex_calc.c \
 			src/raycasting/verticalDrawing.c \
 			src/init/init.c \
 			src/init/init_colors.c \

@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:38:33 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/19 19:25:43 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/20 14:59:35 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	my_mlx_pixel_put(int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+//exchanged for textures calc and color settings!
 void	set_color(void)
 {
 	int	elmnt;

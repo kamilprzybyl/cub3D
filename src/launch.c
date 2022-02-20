@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:53:42 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/19 19:20:32 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/19 19:58:46 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	launch(void)
 	draw_floor();
 	draw_ceiling();
 	raycast_loop();
-  	data()->var.frameTime = 16 / 1000.0;
-  	data()->var.moveSpeed = data()->var.frameTime * 5.0;
+
+	data()->var.frameTime = 16 / 1000.0;
+	data()->var.moveSpeed = data()->var.frameTime * 5.0;
 	data()->var.rotSpeed = data()->var.frameTime * 3.0;
 	mlx_put_image_to_window(data()->mlx, data()->win, \
 		data()->img[4].ptr_img, 0, 0);

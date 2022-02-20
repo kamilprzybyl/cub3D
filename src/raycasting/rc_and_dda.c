@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:51:12 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/19 19:26:37 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/20 12:41:30 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	raycast_loop(void)
 		calc_dist_perp();
 		calc_vertical_line_height();
 		calc_draw_start_and_draw_end();
-		set_color();
-		draw_vertical_line(x);
+		calc_texX();
+		draw_vertical_texture_stripe(x);
+		//set_color();
+		//draw_vertical_line(x);
 		x++;
 	}
 }

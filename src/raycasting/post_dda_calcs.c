@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:37:42 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/19 19:31:54 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/20 15:00:15 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	calc_dist_perp(void)
 void	calc_vertical_line_height(void)
 {
 	data()->var.lineHeight = \
-		(int)(data()->var.sHeight / data()->var.perpWallDist) * 2;
+		(int)(data()->var.sHeight / data()->var.perpWallDist);
 }
 
 //calculate lowest and highest pixel to fill in current stripe
