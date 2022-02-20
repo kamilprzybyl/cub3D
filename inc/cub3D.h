@@ -10,10 +10,16 @@
 # include "../Libft/libft.h"
 # include "../gnl/get_next_line.h"
 
+# define SCREEN_HEIGHT 1024
+# define SCREEN_WIDTH 1024
+# define TEX_HEIGHT 64
+# define TEX_WIDTH 64
+
 typedef struct s_var {
 
 	int		sWidth;
 	int		sHeight;
+	uint32_t	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 	double	posX; //x start position
 	double	posY; //y start position
@@ -58,8 +64,17 @@ typedef struct s_var {
 	int		drawStart;
 	int		drawEnd;
 
+	int		texWidth;
+	int		texHeight;
+	int		texNum;
+	double	wallX;
+	double	step;
+	double	texPos;
+	int		texY;
+	int		texX;
+
 	//choose wall color
-	int		color;
+	uint32_t	color;
 
 	//timing for input and FPS counter
 	double	frameTime; //time this frame has taken, in seconds
@@ -90,6 +105,7 @@ typedef struct s_cub
 	unsigned long	floor;
 	unsigned long	ceilling;
 	t_var			var;
+	int				texture[4][TEX_HEIGHT * TEX_WIDTH];
 }				t_cub;
 
 # define ESC 53
@@ -126,6 +142,9 @@ void			raycast_loop(void);
 void			calc_dist_perp(void);
 void			calc_vertical_line_height(void);
 void			calc_draw_start_and_draw_end(void);
+
+void			calc_texX(void);
+void			draw_vertical_texture_stripe(int x);
 
 void			my_mlx_pixel_put(int x, int y, int color);
 void			set_color(void);
