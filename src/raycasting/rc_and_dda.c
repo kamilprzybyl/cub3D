@@ -6,11 +6,29 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:51:12 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/20 12:41:30 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/20 17:45:00 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+
+void	set_texture()
+{
+	if (data()->var.side == 0)
+	{
+		if (data()->var.mapX > data()->var.posX)
+			data()->var.texNum = 0;
+		else
+			data()->var.texNum = 2;
+	}
+	else
+	{
+		if (data()->var.mapY > data()->var.posY)
+			data()->var.texNum = 3;
+		else
+			data()->var.texNum = 1;
+	}
+}
 
 //DigitalDifferentialAlgorithm
 	//jump to next map square, either in x-direction, or in y-direction
@@ -32,7 +50,10 @@ void	dda(void)
 			data()->var.side = 1;
 		}
 		if (data()->map[data()->var.mapY][data()->var.mapX] == '1')
+		{
 			data()->var.hit = 1;
+			set_texture();
+		}
 	}
 }
 

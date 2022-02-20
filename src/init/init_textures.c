@@ -10,8 +10,10 @@ void	fill_texture_array(int i)
 	{
 		x = -1;
 		while (++x < data()->img[i].width)
+		{
 			data()->texture[i][data()->img[i].height * y + x] = \
-				(int)data()->img[i].addr[data()->img[i].height * y + x];
+				(int)(data()->img[i].addr[data()->img[i].height * y + x]);
+		}
 	}
 }
 
