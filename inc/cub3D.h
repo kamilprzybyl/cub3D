@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:50:04 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 12:50:35 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:25:16 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "../mlx/mlx.h"
-# include "../Libft/libft.h"
+# include "../Libft/inc/libft.h"
 # include "../src/gnl/get_next_line.h"
 
 # define SCREEN_HEIGHT 512
@@ -135,7 +135,7 @@ int				parse_map(int fd);
 void			init(void);
 int				init_colors(void);
 int				init_textures(void);
-int				check_chars(void)
+int				check_chars(void);
 int				validate_map(void);
 
 void			calc_ray_pos_and_dir(int x);

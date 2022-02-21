@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_and_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:51:12 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 12:50:08 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:57:05 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	raycast_loop(void)
 		calc_dist_perp();
 		calc_vertical_line_height();
 		calc_draw_start_and_draw_end();
-		calc_texX();
+		calc_tex_x();
 		draw_vertical_texture_stripe(x);
 		x++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:10:56 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/21 12:44:11 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:56:42 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	map(char *line)
 {
-	int	tmp;
+	char	**tmp;
 
 	if (!data()->map)
 	{
