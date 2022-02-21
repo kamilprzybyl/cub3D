@@ -8,10 +8,10 @@
 # include <fcntl.h>
 # include "../mlx/mlx.h"
 # include "../Libft/libft.h"
-# include "../gnl/get_next_line.h"
+# include "../src/gnl/get_next_line.h"
 
-# define SCREEN_HEIGHT 1024
-# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 512
+# define SCREEN_WIDTH 512
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
 
@@ -73,7 +73,7 @@ typedef struct s_var {
 	int		texX;
 
 	//choose wall color
-	uint32_t	color;
+	unsigned int	color;
 
 	//timing for input and FPS counter
 	double	frameTime; //time this frame has taken, in seconds
@@ -83,6 +83,7 @@ typedef struct s_var {
 	double	rotSpeed; //constant value is in radians/second
 }			t_var;
 
+//for screen
 typedef struct s_img {
 	void	*ptr_img;
 	char	*addr;
@@ -92,6 +93,17 @@ typedef struct s_img {
 	int		width;
 	int		height;
 }				t_img;
+
+//for textures
+typedef struct s_img2 {
+	void	*ptr_img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}				t_img2;
 
 typedef struct s_move
 {
@@ -107,7 +119,8 @@ typedef struct s_cub
 {
 	void			*mlx;
 	void			*win;
-	t_img			img[5]; //changed for test case from 4 to 5
+	t_img			img; //changed for test case from 4 to 5
+	t_img2			img2[4];
 	char			*xpm[5];
 	char			*rgb[3];
 	char			**map;
@@ -129,8 +142,6 @@ typedef struct s_cub
 # define RIGHT 124
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
-
-# define screenWidth 640
 
 t_cub			*data(void);
 
