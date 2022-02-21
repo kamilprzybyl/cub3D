@@ -97,6 +97,7 @@ SRC_LIST =	main.c \
 			init/init.c \
 			init/init_colors.c \
 			init/init_textures.c \
+			init/init_check_chars.c \
 			init/validate_map.c \
 			utils/ft_free.c \
 			utils/rgb_to_hex.c \

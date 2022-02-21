@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/21 11:50:04 by mstrantz          #+#    #+#             */
+/*   Updated: 2022/02/21 12:50:35 by mstrantz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -14,73 +26,56 @@
 # define SCREEN_WIDTH 512
 # define TEX_HEIGHT 64
 # define TEX_WIDTH 64
+# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_KEY_RELEASE	3
 
 typedef struct s_var {
-
-	int		sWidth;
-	int		sHeight;
-
-	double	posX; //x start position
-	double	posY; //y start position
-	double	dirX; //initial direction vector x component
-	double	dirY; //initial direction vector y component
-	double	planeX; // camera plane x component
-	double	planeY; // camera plane y component
-
-	double	time; //time of current frame
-	double	oldTime; //time of previous frame
-
-	//calculate ray position and direction
-	double	cameraX; //x-coordinate in camera space
-	double	rayDirX;
-	double	rayDirY;
-
-	//which box of the map we're in
-	int		mapX;
-	int		mapY;
-
-	//length of ray form current position to next x- or y-side
-	double	sideDistX;
-	double	sideDistY;
-
-	//length of ray from one x or y-side to next x or y-side
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-
-	//what direction to step in x or y-direction (either +1 or -1)
-	int		stepX;
-	int		stepY;
-
-	//wall hit? which side?
-	int		hit;
-	int		side;
-
-	//calculate height of line to draw on screen
-	int		lineHeight;
-
-	//calculate lowest and highest pixel to fill in current stripe
-	int		drawStart;
-	int		drawEnd;
-
-	int		texWidth;
-	int		texHeight;
-	int		texNum;
-	double	wallX;
-	double	step;
-	double	texPos;
-	int		texY;
-	int		texX;
-
-	//choose wall color
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			time;
+	double			old_time;
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				tex_width;
+	int				tex_height;
+	int				tex_num;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_y;
+	int				tex_x;
 	unsigned int	color;
-
-	//timing for input and FPS counter
-	double	frameTime; //time this frame has taken, in seconds
-
-	//speed modifiers
-	double	moveSpeed; //constant value is in squares/second
-	double	rotSpeed; //constant value is in radians/second
+	double			frame_time;
+	double			move_speed;
+	double			rot_speed;
 }			t_var;
 
 //for screen
@@ -119,7 +114,7 @@ typedef struct s_cub
 {
 	void			*mlx;
 	void			*win;
-	t_img			img; //changed for test case from 4 to 5
+	t_img			img;
 	t_img2			img2[4];
 	char			*xpm[5];
 	char			*rgb[3];
@@ -131,27 +126,16 @@ typedef struct s_cub
 	t_move			move;
 }				t_cub;
 
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define X_EVENT_KEY_PRESS		2
-# define X_EVENT_KEY_RELEASE	3
-
 t_cub			*data(void);
 
 int				parse(char *file);
 int				parse_info(int fd);
 int				parse_map(int fd);
 
-void			init();
+void			init(void);
 int				init_colors(void);
 int				init_textures(void);
+int				check_chars(void)
 int				validate_map(void);
 
 void			calc_ray_pos_and_dir(int x);
@@ -166,7 +150,7 @@ void			calc_dist_perp(void);
 void			calc_vertical_line_height(void);
 void			calc_draw_start_and_draw_end(void);
 
-void			calc_texX(void);
+void			calc_tex_x(void);
 void			draw_vertical_texture_stripe(int x);
 
 void			my_mlx_pixel_put(int x, int y, int color);
