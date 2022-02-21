@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 19:14:30 by kamilprzyby       #+#    #+#             */
-/*   Updated: 2022/02/21 18:15:27 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:34:07 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	mlx_hook(data()->win, 6, (1L << 6), mouse_hook, NULL);
 	mlx_hook(data()->win, X_EVENT_KEY_PRESS, 0, &key_press, NULL);
 	mlx_hook(data()->win, X_EVENT_KEY_RELEASE, 0, &key_release, NULL);
-	mlx_hook(data()->win, X_EVENT_EXIT, 0, &quit , NULL);
+	mlx_hook(data()->win, X_EVENT_EXIT, 0, &quit, NULL);
 	mlx_loop(data()->mlx);
 	return (0);
 }
