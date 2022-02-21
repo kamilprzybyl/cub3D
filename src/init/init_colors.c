@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:17:09 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/20 19:28:23 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:54:32 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	init_colors(void)
 {
 	int		i;
 	char	**rgb;
+	int		tmp;
 
 	i = 0;
 	while (data()->rgb[i])

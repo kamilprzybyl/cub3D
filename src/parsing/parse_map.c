@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:10:56 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/20 17:10:57 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:44:11 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	map(char *line)
 {
+	int	tmp;
+
 	if (!data()->map)
 	{
 		data()->map = malloc(sizeof(char *) * 2);
@@ -24,7 +26,8 @@ static int	map(char *line)
 	}
 	else
 	{
-		data()->map = ft_realloc(data()->map, ft_arrlen(data()->map) + 2);
+		tmp = ft_realloc(data()->map, ft_arrlen(data()->map) + 2);
+		data()->map = tmp;
 		data()->map[ft_arrlen(data()->map)] = ft_strdup(line);
 	}
 	return (0);

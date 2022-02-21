@@ -6,27 +6,27 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:51:12 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/20 17:45:00 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:50:08 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	set_texture()
+void	set_texture(void)
 {
 	if (data()->var.side == 0)
 	{
-		if (data()->var.mapX > data()->var.posX)
-			data()->var.texNum = 0;
+		if (data()->var.map_x > data()->var.pos_x)
+			data()->var.tex_num = 0;
 		else
-			data()->var.texNum = 2;
+			data()->var.tex_num = 2;
 	}
 	else
 	{
-		if (data()->var.mapY > data()->var.posY)
-			data()->var.texNum = 3;
+		if (data()->var.map_y > data()->var.pos_y)
+			data()->var.tex_num = 3;
 		else
-			data()->var.texNum = 1;
+			data()->var.tex_num = 1;
 	}
 }
 
@@ -37,19 +37,19 @@ void	dda(void)
 {
 	while (data()->var.hit == 0)
 	{
-		if (data()->var.sideDistX < data()->var.sideDistY)
+		if (data()->var.side_dist_x < data()->var.side_dist_y)
 		{
-			data()->var.sideDistX += data()->var.deltaDistX;
-			data()->var.mapX += data()->var.stepX;
+			data()->var.side_dist_x += data()->var.delta_dist_x;
+			data()->var.map_x += data()->var.step_x;
 			data()->var.side = 0;
 		}
 		else
 		{
-			data()->var.sideDistY += data()->var.deltaDistY;
-			data()->var.mapY += data()->var.stepY;
+			data()->var.side_dist_y += data()->var.delta_dist_y;
+			data()->var.map_y += data()->var.step_y;
 			data()->var.side = 1;
 		}
-		if (data()->map[data()->var.mapY][data()->var.mapX] == '1')
+		if (data()->map[data()->var.map_y][data()->var.map_x] == '1')
 		{
 			data()->var.hit = 1;
 			set_texture();
@@ -62,7 +62,7 @@ void	raycast_loop(void)
 	int	x;
 
 	x = 0;
-	while (x < data()->var.sWidth)
+	while (x < SCREEN_WIDTH)
 	{
 		calc_ray_pos_and_dir(x);
 		set_box_pos();
@@ -74,8 +74,6 @@ void	raycast_loop(void)
 		calc_draw_start_and_draw_end();
 		calc_texX();
 		draw_vertical_texture_stripe(x);
-		//set_color();
-		//draw_vertical_line(x);
 		x++;
 	}
 }

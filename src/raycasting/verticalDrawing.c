@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:38:33 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/20 14:59:35 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:23:47 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,17 @@ void	my_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data()->img[4].addr + \
-		(y * data()->img[4].line_len + x * (data()->img[4].bits_per_pixel / 8));
+	dst = data()->img.addr + \
+		(y * data()->img.line_len + x * (data()->img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-//exchanged for textures calc and color settings!
-void	set_color(void)
-{
-	int	elmnt;
-
-	elmnt = data()->map[data()->var.mapY][data()->var.mapX];
-	if (elmnt == '1')
-		data()->var.color = 0x80FF00;
-	if (data()->var.side == 1)
-		data()->var.color = data()->var.color / 2;
 }
 
 void	draw_vertical_line(int x)
 {
 	int	y;
 
-	y = data()->var.drawStart;
-	while (y < data()->var.drawEnd)
+	y = data()->var.draw_start;
+	while (y < data()->var.draw_end)
 	{
 		my_mlx_pixel_put(x, y, data()->var.color);
 		y++;
