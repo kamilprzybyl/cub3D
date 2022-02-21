@@ -3,18 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 19:17:53 by kamilprzyby       #+#    #+#             */
-/*   Updated: 2022/02/19 19:18:09 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:15:42 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-int	mouse_events(int keycode)
+int	mouse_hook(void)
 {
-	(void)keycode;
-	exit(0);
-	return (1);
+	int	x;
+	int	y;
+
+	if (data()->key.p == 1) {
+		mlx_mouse_hide();
+		mlx_mouse_get_pos(data()->win, &x, &y);
+		if (x > SCREEN_WIDTH / 2)
+			rotate_right();
+		if (x < SCREEN_WIDTH / 2)
+			rotate_left();
+		mlx_mouse_move(data()->win, SCREEN_WIDTH / 2, y / 2);
+	} else {
+		mlx_mouse_show();
+	}
+	return (0);
 }

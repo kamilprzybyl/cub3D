@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:50:04 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 13:25:16 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:15:54 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,23 @@
 # include "../Libft/inc/libft.h"
 # include "../src/gnl/get_next_line.h"
 
-# define SCREEN_HEIGHT 512
-# define SCREEN_WIDTH 512
-# define TEX_HEIGHT 64
-# define TEX_WIDTH 64
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
+# define SCREEN_HEIGHT 			512
+# define SCREEN_WIDTH 			512
+# define TEX_HEIGHT 			64
+# define TEX_WIDTH 				64
+# define ESC 					53
+# define W 						13
+# define A 						0
+# define S 						1
+# define D 						2
+# define UP 					126
+# define DOWN 					125
+# define LEFT 					123
+# define RIGHT 					124
+# define P 						35
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3
+# define X_EVENT_EXIT			17
 
 typedef struct s_var {
 	double			pos_x;
@@ -100,7 +102,7 @@ typedef struct s_img2 {
 	int		height;
 }				t_img2;
 
-typedef struct s_move
+typedef struct s_key
 {
 	int	w;
 	int	s;
@@ -108,7 +110,8 @@ typedef struct s_move
 	int	d;
 	int	right;
 	int	left;
-}				t_move;
+	int	p;
+}				t_key;
 
 typedef struct s_cub
 {
@@ -123,7 +126,8 @@ typedef struct s_cub
 	unsigned long	ceilling;
 	t_var			var;
 	int				texture[4][TEX_HEIGHT * TEX_WIDTH];
-	t_move			move;
+	t_key			key;
+	char			mouse;
 }				t_cub;
 
 t_cub			*data(void);
@@ -165,7 +169,7 @@ int				launch(void);
 void			hooks(void);
 int				key_press(int keycode);
 int				key_release(int keycode);
-int				mouse_events(int keycode);
+int				mouse_hook(void);
 
 void			rotate_left(void);
 void			rotate_right(void);
@@ -173,7 +177,7 @@ void			move_forward(void);
 void			move_backwards(void);
 void			move_left(void);
 void			move_right(void);
-void			quit(void);
+int				quit(void);
 
 void			ft_free(char **arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
