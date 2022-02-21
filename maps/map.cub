@@ -1,7 +1,7 @@
 
-C 225,30,0
+F 210,105,30
 
-F 220,-100,0
+C 0,0,255
 NO /Users/kprzybyl/42_projects/cub3D/textures/NO.xpm
 SO /Users/kprzybyl/42_projects/cub3D/textures/SO.xpm
 WE /Users/kprzybyl/42_projects/cub3D/textures/WE.xpm
