@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:48:40 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/20 15:15:28 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:11:17 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ void	draw_floor(void)
 	int	j;
 
 	i = 0;
-	while (i < data()->var.sWidth)
+	while (i < SCREEN_WIDTH)
 	{
-		j = data()->var.sHeight / 2 - 1;
-		while (++j < data()->var.sHeight)
-		{
+		j = SCREEN_HEIGHT / 2 - 1;
+		while (++j < SCREEN_HEIGHT)
 			my_mlx_pixel_put(i, j, data()->floor);
-		}
 		i++;
 	}
 }
@@ -35,13 +33,11 @@ void	draw_ceiling(void)
 	int	j;
 
 	i = 0;
-	while (i < data()->var.sWidth)
+	while (i < SCREEN_WIDTH)
 	{
 		j = -1;
-		while (++j < data()->var.sHeight / 2)
-		{
+		while (++j < SCREEN_HEIGHT / 2)
 			my_mlx_pixel_put(i, j, data()->ceilling);
-		}
 		i++;
 	}
 }

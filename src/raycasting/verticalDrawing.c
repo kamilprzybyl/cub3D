@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:38:33 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 10:48:12 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:23:47 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	draw_vertical_line(int x)
 {
 	int	y;
 
-	y = data()->var.drawStart;
-	while (y < data()->var.drawEnd)
+	y = data()->var.draw_start;
+	while (y < data()->var.draw_end)
 	{
 		my_mlx_pixel_put(x, y, data()->var.color);
 		y++;
