@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 11:19:04 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/20 18:22:39 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 10:47:48 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 //x coordinate on the texture
 void	calc_texX(void)
 {
-	// data()->var.texNum = data()->map[data()->var.mapY][data()->var.mapX] - 48;
-	// printf("texNum = %d\n", data()->var.texNum);
 	if (data()->var.side == 0)
 		data()->var.wallX = data()->var.posY + \
 			data()->var.perpWallDist * data()->var.rayDirY;
@@ -48,6 +46,9 @@ void	draw_vertical_texture_stripe(int x)
 		texPos += step;
 		data()->var.color = data()->texture[data()->var.texNum][TEX_HEIGHT \
 			* data()->var.texY + data()->var.texX];
+		// printf("texX %d  texY %d, texNum %d\n", data()->var.texX, data()->var.texY, data()->var.texNum);
+		// printf("x %d, y %d : color %d\n",x, y, data()->var.color);
+		// getchar();
 		if (data()->var.side == 1)
 			data()->var.color = (data()->var.color >> 1) & 8355711;//data()->var.color /= 2;
 		my_mlx_pixel_put(x, y, data()->var.color);

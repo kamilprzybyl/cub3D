@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:10:49 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/20 17:10:50 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 10:12:03 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int	textures(char *line)
 		return (1);
 	if (ft_strncmp(tokens[0], "NO", 3) == 0)
 		data()->xpm[0] = ft_strdup(tokens[1]);
-	else if (ft_strncmp(tokens[0], "SO", 3) == 0)
-		data()->xpm[1] = ft_strdup(tokens[1]);
-	else if (ft_strncmp(tokens[0], "WE", 3) == 0)
-		data()->xpm[2] = ft_strdup(tokens[1]);
 	else if (ft_strncmp(tokens[0], "EA", 3) == 0)
+		data()->xpm[1] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "SO", 3) == 0)
+		data()->xpm[2] = ft_strdup(tokens[1]);
+	else if (ft_strncmp(tokens[0], "WE", 3) == 0)
 		data()->xpm[3] = ft_strdup(tokens[1]);
 	else if (ft_strncmp(tokens[0], "C", 2) \
 		&& ft_strncmp(tokens[0], "F", 2))
