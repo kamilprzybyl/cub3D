@@ -1,16 +1,16 @@
 
-C 225,30,0
+C 153,255,255
 
-F 220,-100,0
-NO /Users/mstrantz/Workspace/cub3d_forked/textures/NO.xpm
-SO /Users/mstrantz/Workspace/cub3d_forked/textures/SO.xpm
-WE /Users/mstrantz/Workspace/cub3d_forked/textures/WE.xpm
-EA /Users/mstrantz/Workspace/cub3d_forked/textures/EA.xpm
+F 100,100,100
+NO ./textures/NO.xpm
+SO ./textures/SO.xpm
+WE ./textures/WE.xpm
+EA ./textures/EA.xpm
 
         111111111111111111111111
         10000S0000110000000000001
-        1011000001110000000000001
-        1001000000000000000000001
+        1011000001110000010000001
+        1001000000000000001000001
  11111111011000001110000000000001
 100000000011000001110111111111111
 1110111111111011111000010001

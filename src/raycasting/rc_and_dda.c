@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   rc_and_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:51:12 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 12:57:05 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/21 14:49:06 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
+//side == 0 x side of wall was hit, side == 1 -> y side;
 void	set_texture(void)
 {
 	if (data()->var.side == 0)
 	{
 		if (data()->var.map_x > data()->var.pos_x)
-			data()->var.tex_num = 0;
+			data()->var.tex_num = 1;
 		else
-			data()->var.tex_num = 2;
+			data()->var.tex_num = 3;
 	}
 	else
 	{
 		if (data()->var.map_y > data()->var.pos_y)
-			data()->var.tex_num = 3;
+			data()->var.tex_num = 2;
 		else
-			data()->var.tex_num = 1;
+			data()->var.tex_num = 0;
 	}
 }
 
