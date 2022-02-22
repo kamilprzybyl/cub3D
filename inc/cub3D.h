@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:50:04 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 18:15:54 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:58:32 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define SCREEN_WIDTH 			512
 # define TEX_HEIGHT 			64
 # define TEX_WIDTH 				64
+# define WALL					0x00F0F0F0
+# define WALKABLE				0x00000000
+# define PLAYER					0x00FF0000
 # define ESC 					53
 # define W 						13
 # define A 						0
@@ -80,6 +83,13 @@ typedef struct s_var {
 	double			rot_speed;
 }			t_var;
 
+typedef struct s_var_minimap {
+	int	width;
+	int	height;
+	int	pix_x;
+	int	pix_y;
+}	t_var_minimap;
+
 //for screen
 typedef struct s_img {
 	void	*ptr_img;
@@ -125,6 +135,7 @@ typedef struct s_cub
 	unsigned long	floor;
 	unsigned long	ceilling;
 	t_var			var;
+	t_var_minimap	var_mm;
 	int				texture[4][TEX_HEIGHT * TEX_WIDTH];
 	t_key			key;
 	char			mouse;
@@ -163,6 +174,8 @@ void			draw_vertical_line(int x);
 
 void			draw_floor(void);
 void			draw_ceiling(void);
+
+void			draw_minimap(void);
 
 int				launch(void);
 
