@@ -6,7 +6,7 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:53:42 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 12:24:38 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:52:43 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	launch(void)
 	draw_floor();
 	draw_ceiling();
 	raycast_loop();
+	draw_minimap();
 	hooks();
 	data()->var.frame_time = 16 / 1000.0;
 	data()->var.move_speed = data()->var.frame_time * 5.0;

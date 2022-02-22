@@ -89,6 +89,7 @@ SRC_LIST =	main.c \
 			movement/rotate.c \
 			movement/quit.c \
 			raycasting/drawingCeilingFloor.c \
+			raycasting/drawMinimap.c \
 			raycasting/post_dda_calcs.c \
 			raycasting/pre_dda_calcs.c \
 			raycasting/rc_and_dda.c \
