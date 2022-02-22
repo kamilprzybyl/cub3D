@@ -6,22 +6,14 @@
 /*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:51:36 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/22 12:02:28 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/02/22 12:20:00 by mstrantz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	reset_var_mm(void)
-{
-	data()->var_mm.height = 0;
-	data()->var_mm.width = 0;
-	data()->var_mm.pix_x = 0;
-	data()->var_mm.pix_y = 0;
-}
-
 //loops over pixels to draw
-void	draw_element(int color, int pixels_x, int pixels_y)
+static void	draw_element(int color, int pixels_x, int pixels_y)
 {
 	int	i;
 	int	j;
@@ -45,7 +37,7 @@ void	draw_element(int color, int pixels_x, int pixels_y)
 	}
 }
 
-void	select_minimap_element(int n_pixel_x, int n_pixel_y)
+static void	select_minimap_element(int n_pixel_x, int n_pixel_y)
 {
 	char	e;
 
@@ -67,7 +59,8 @@ void	draw_minimap(void)
 
 	n_pixel_x = SCREEN_WIDTH / 100;
 	n_pixel_y = SCREEN_HEIGHT / 100;
-	reset_var_mm();
+	data()->var_mm.height = 0;
+	data()->var_mm.pix_y = 0;
 	while (data()->map[data()->var_mm.height])
 	{
 		data()->var_mm.width = 0;
