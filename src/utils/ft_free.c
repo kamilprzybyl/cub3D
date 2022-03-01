@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:14:34 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/20 17:14:36 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/03/01 17:54:40 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_free(char **arr)
 {
 	int	i;
 
+	if (!arr)
+		return ;
 	i = 0;
 	while (arr[i])
 	{

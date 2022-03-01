@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:10:56 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/21 12:56:42 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:00:56 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	map(char *line)
 	else
 	{
 		tmp = ft_realloc(data()->map, ft_arrlen(data()->map) + 2);
+		if (!tmp)
+			return (1);
 		data()->map = tmp;
 		data()->map[ft_arrlen(data()->map)] = ft_strdup(line);
 	}
@@ -46,7 +48,10 @@ int	parse_map(int fd)
 		if (ft_strlen(line) == 0 && !data()->map)
 			;
 		else if (map(line) == 1)
+		{
+			free(line);
 			return (1);
+		}
 		free(line);
 		if (ret == 0)
 			break ;

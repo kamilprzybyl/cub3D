@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:17:09 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/21 13:37:48 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:18:37 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	*validate_rgb(char **arr)
 
 	i = 0;
 	rgb = malloc(sizeof(int) * 4);
+	if (!rgb)
+		return (NULL);
 	while (arr[i])
 	{
 		rgb[i] = ft_atoi(arr[i]);
@@ -60,9 +62,13 @@ int	init_colors(void)
 			return (1);
 		rgb = validate_rgb(tmp);
 		if (!rgb)
+		{
+			free(rgb);
 			return (1);
+		}
 		convert_colors(rgb, i);
 		ft_free(tmp);
+		free(rgb);
 		i++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:38:17 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/21 12:41:35 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:47:04 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	is_closed(int i, int j)
 
 static int	is_end(int index)
 {
-	int	i;
+	int		i;
 
 	i = index;
 	i++;
@@ -47,7 +47,7 @@ static int	is_end(int index)
 			return (1);
 		i++;
 	}
-	data()->map[index] = NULL;
+	data()->map[i] = NULL;
 	return (0);
 }
 

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:16:07 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/21 12:34:41 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:47:14 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+
+static void	ft_exit(char *s)
+{
+	write(2, s, ft_strlen(s));
+	ft_free(data()->xpm);
+	ft_free(data()->rgb);
+	ft_free(data()->map);
+	exit(1);
+}
 
 void	init(void)
 {
@@ -18,20 +27,11 @@ void	init(void)
 
 	data()->mlx = mlx_init();
 	if (init_textures() == 1)
-	{
-		write(1, "Error\nCannot load textures\n", 27);
-		exit(1);
-	}
+		ft_exit("Error\nCannot load textures\n");
 	if (init_colors() == 1)
-	{
-		write(1, "Error\nCannot load colors\n", 25);
-		exit(1);
-	}
+		ft_exit("Error\nCannot load colors\n");
 	if (validate_map() == 1)
-	{
-		write(1, "Error\nInvalid map\n", 18);
-		exit(1);
-	}
+		ft_exit("Error\nInvalid map\n");
 	tmp = mlx_new_window(data()->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	data()->win = tmp;
 }

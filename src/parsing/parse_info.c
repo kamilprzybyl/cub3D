@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:10:49 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/02/21 10:12:03 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:01:42 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	parse_info(int fd)
 		if (ft_strlen(line) == 0)
 			;
 		else if (textures(line) == 1 || rgb(line) == 1)
+		{
+			free(line);
 			return (1);
+		}
 		free(line);
 		if (ret == 0)
 			break ;
