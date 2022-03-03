@@ -6,23 +6,24 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:14:34 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/03/01 17:54:40 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:05:08 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
 
-void	ft_free(char **arr)
+void	ft_free(char ***arr)
 {
 	int	i;
 
-	if (!arr)
+	if (!*arr)
 		return ;
 	i = 0;
-	while (arr[i])
+	while ((*arr)[i])
 	{
-		free(arr[i]);
+		free((*arr)[i]);
 		i++;
 	}
-	free(arr);
+	free(*arr);
+	*arr = NULL;
 }

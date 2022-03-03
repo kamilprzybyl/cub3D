@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstrantz <mstrantz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 11:50:04 by mstrantz          #+#    #+#             */
-/*   Updated: 2022/02/22 11:58:32 by mstrantz         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:57:16 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ typedef struct s_cub
 	void			*win;
 	t_img			img;
 	t_img2			img2[4];
-	char			*xpm[5];
-	char			*rgb[3];
+	char			**rgb;
+	char			**xpm;
 	char			**map;
 	unsigned long	floor;
 	unsigned long	ceilling;
@@ -192,7 +192,7 @@ void			move_left(void);
 void			move_right(void);
 int				quit(void);
 
-void			ft_free(char **arr);
+void			ft_free(char ***arr);
 unsigned long	rgb_to_hex(int r, int g, int b);
 int				ft_arrlen(char **arr);
 char			**ft_realloc(char **ptr, int size);
