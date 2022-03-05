@@ -6,7 +6,7 @@
 /*   By: kprzybyl <kprzybyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 17:11:01 by kprzybyl          #+#    #+#             */
-/*   Updated: 2022/03/03 15:59:42 by kprzybyl         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:39:56 by kprzybyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_exit(char *s, int fd)
 		close(fd);
 	write(2, s, ft_strlen(s));
 	ft_free(&data()->xpm);
-	// ft_free(&data()->rgb);
+	ft_free(&data()->rgb);
 	ft_free(&data()->map);
 	exit(1);
 }
